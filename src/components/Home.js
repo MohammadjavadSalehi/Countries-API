@@ -11,7 +11,7 @@ const Home = () => {
     );
 
     
-  //  general api url
+  //api url
    const api = "https://restcountries.com/v3.1/all";
     
   
@@ -29,7 +29,7 @@ const Home = () => {
      fetcher()
    },[])
 
-//     theme button
+//theme button
    const toggleDarkMode = () => {
     if (mode) {
       document.documentElement.classList.add("dark");
@@ -44,7 +44,7 @@ const Home = () => {
   };
 
 
-//    search functionality
+//search function
   const search = async(e)=> {
     if(e.length<3 || e === "") return;
     const res = await fetch(`https://restcountries.com/v3.1/name/${e}`);
@@ -52,7 +52,7 @@ const Home = () => {
     await setCountry(data);
   }
 
-// filter functionality 
+// filter function
   const filter = async(e)=> {
       if(e==="")return;
       const res = await fetch(`https://restcountries.com/v3.1/region/${e}`);
@@ -67,7 +67,7 @@ const Home = () => {
     <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">
       <div className="w-screen shadow-md py-6 px-3 bg-white dark:bg-gray-900 dark:text-white mb-16">
         <div className="flex container mx-auto ">
-          <h1 className="font-bold text-xl">Where in the world?</h1>
+          <h1 className="font-bold text-xl">Surf through countries</h1>
           <div className="ml-auto font-medium">
             <button
               onClick={() => toggleDarkMode()}
