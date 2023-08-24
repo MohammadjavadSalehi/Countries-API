@@ -1,7 +1,7 @@
 import React from "react";
 export default function Card({ title, image, population, region, capital }) {
   return (
-    <div className="rounded-lg shadow-lg bg-white dark:bg-gray-700 dark:text-white pb-4">
+    <div className="rounded-lg shadow-lg bg-white dark:bg-gray-700 dark:text-white pb-4 h-80">
       <img
         src={image}
         alt={title}

@@ -58,8 +58,8 @@ const Home = () => {
 
   return (
     <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">
-      <div className="w-screen shadow-md py-6 px-3 bg-white dark:bg-gray-900 dark:text-white mb-16">
-        <div className="flex container mx-auto ">
+      <div className="w-full shadow-md py-6 px-3 bg-white dark:bg-gray-900 dark:text-white mb-16">
+        <div className="flex container mx-auto pr-10">
           <h1 className="font-bold text-xl">Surf through countries</h1>
           <div className="ml-auto font-medium">
             <button
@@ -69,7 +69,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex container mx-auto mb-16">
+      <div className="flex container mx-auto mb-16 pr-5 pl-5">
         <i className="fa fa-search my-auto -mr-9 z-10 pr-2 pl-3 py-5 rounded-md text-gray-400"></i>
         <input
           type="text"
@@ -90,7 +90,7 @@ const Home = () => {
         </select>
       </div>
       <div
-        className="container grid grid-cols-4 gap-16 mx-auto p-50"
+        className="container grid grid-cols-4 gap-16 mx-auto"
         style={{ padding: 20 }}
       >
         {country.map((country, index) => (

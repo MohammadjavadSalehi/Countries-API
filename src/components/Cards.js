@@ -1,10 +1,7 @@
-import React,{ useState } from 'react';
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-
-
- const Cards = ({api}) => {
-
+const Cards = ({ api }) => {
   const [mode, setMode] = useState(true);
   const [toggleBtn, setToggleBtn] = useState(
     '<i class="far fa-sun"></i> Light Mode'
@@ -16,15 +13,20 @@ import { useLocation, useNavigate } from "react-router-dom";
 
   const goHomeBtn = () => {
     history("/");
-  };         
-    
-  return (
+  };
 
-     <div className="country">
+  return (
+    <div className="country">
       <div className="countryTitle">
-        <button onClick={goHomeBtn}>Back</button>
+        <button className="flex flex-start m-5" onClick={goHomeBtn}>
+          Back
+        </button>
         <h2>{state.name.common}</h2>
-        <img src={state.flags.png} alt={state.name.common} />
+        <img
+          className="mr-auto ml-auto"
+          src={state.flags.png}
+          alt={state.name.common}
+        />
 
         <button>
           <a href={state.maps.googleMaps}>View on map</a>
@@ -47,6 +49,5 @@ import { useLocation, useNavigate } from "react-router-dom";
     </div>
   );
 };
-  
 
 export default Cards;
