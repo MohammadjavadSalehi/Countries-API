@@ -1,36 +1,33 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 
-
 const Home = () => {
-    const [country, setCountry] = useState([]);
-    const [mode, setMode] = useState(true);
-    const [toggleBtn, setToggleBtn] = useState(
-      '<i class="far fa-sun"></i> Light Mode'
-    );
+  const [country, setCountry] = useState([]);
+  const [mode, setMode] = useState(true);
+  const [toggleBtn, setToggleBtn] = useState(
+    '<i class="far fa-sun"></i> Light Mode'
+  );
 
-    
   //api url
-   const api = "https://restcountries.com/v3.1/all";
-    
-  
-   useEffect(()=>{
-     const fetcher = async()=>{
-       try {
-         const res = await fetch(api)
-         const data = await res.json()
-         setCountry(data)
-         console.log(data)
-       } catch (error) {
-         console.log(error);
-       }
-     }
-     fetcher()
-   },[])
+  const api = "https://restcountries.com/v3.1/all";
 
-//theme button
-   const toggleDarkMode = () => {
+  useEffect(() => {
+    const fetcher = async () => {
+      try {
+        const res = await fetch(api);
+        const data = await res.json();
+        setCountry(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetcher();
+  }, []);
+
+  //theme button
+  const toggleDarkMode = () => {
     if (mode) {
       document.documentElement.classList.add("dark");
       setToggleBtn('<i class="fas fa-moon"></i> Dark Mode');
@@ -43,27 +40,23 @@ const Home = () => {
     }
   };
 
-
-//search function
-  const search = async(e)=> {
-    if(e.length<3 || e === "") return;
+  //search function
+  const search = async (e) => {
+    if (e.length < 3 || e === "") return;
     const res = await fetch(`https://restcountries.com/v3.1/name/${e}`);
     const data = await res.json();
     await setCountry(data);
-  }
+  };
 
-// filter function
-  const filter = async(e)=> {
-      if(e==="")return;
-      const res = await fetch(`https://restcountries.com/v3.1/region/${e}`);
-      const data = await res.json();
-      await setCountry(data)
-  }
+  // filter function
+  const filter = async (e) => {
+    if (e === "") return;
+    const res = await fetch(`https://restcountries.com/v3.1/region/${e}`);
+    const data = await res.json();
+    await setCountry(data);
+  };
 
-
-
-    return(
-        
+  return (
     <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">
       <div className="w-screen shadow-md py-6 px-3 bg-white dark:bg-gray-900 dark:text-white mb-16">
         <div className="flex container mx-auto ">
@@ -96,28 +89,32 @@ const Home = () => {
           <option value="oceania">Oceania</option>
         </select>
       </div>
-      <div className="container grid grid-cols-4 gap-16 mx-auto ">
-       {country.map((country, index)=>(
-           
-        
-           <Link to={`/country/${country.name.common}`} state={country} key={index}>
-          <Card 
-           name={country.name.common}
-           capital={country.capital}
-           image={country.flags.png}
-           region={country.region}
-           population={country.population}
-           topLevelDomain={country.topLevelDomain}
-           subregion={country.subregion}
-           languages={country.languages}
-           currencies={country.currencies}
-          
-          />
+      <div
+        className="container grid grid-cols-4 gap-16 mx-auto p-50"
+        style={{ padding: 20 }}
+      >
+        {country.map((country, index) => (
+          <Link
+            to={`/country/${country.name.common}`}
+            state={country}
+            key={index}
+          >
+            <Card
+              name={country.name.common}
+              capital={country.capital}
+              image={country.flags.png}
+              region={country.region}
+              population={country.population}
+              topLevelDomain={country.topLevelDomain}
+              subregion={country.subregion}
+              languages={country.languages}
+              currencies={country.currencies}
+            />
           </Link>
-         ))}
+        ))}
       </div>
-   </div>
- );
-}
+    </div>
+  );
+};
 
 export default Home;
